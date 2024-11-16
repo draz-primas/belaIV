@@ -1,0 +1,3 @@
+[submodule "belai"]
+	path = belai
+	url = https://github.com/draz-primas/belai
