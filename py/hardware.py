@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 
 beeppin = 8
-buttonpin = 10
 pinovi = [32, 31, 33, 36, 35, 37, 38, 40]
 pwm = []
 
@@ -15,7 +14,6 @@ def priredi_pinove():
         pwm[i].start(0)
 
     GPIO.setup(beeppin, GPIO.OUT)
-    GPIO.setup(buttonpin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def odpriredi_pinove():
     for i in range(8):
@@ -36,6 +34,4 @@ def beepaj(sekundi):
     time.sleep(sekundi)
     GPIO.output(beeppin, GPIO.LOW)
 
-def stisnuto():
-    return GPIO.input(buttonpin)
 

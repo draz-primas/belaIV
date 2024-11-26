@@ -1,6 +1,7 @@
 import hardware
 import camera
 import sys
+import time
 
 boje = ['T', 'K', 'H', 'P']
 znakovi = ['7', '8', '9', 'X', 'J', 'Q', 'K', 'A']
@@ -27,6 +28,10 @@ def main():
     camera.start()
     hardware.priredi_pinove();
     # ucitaj karte
+    hardware.beepaj(0.5)
+    time.sleep(0.1)
+    hardware.beepaj(0.1)
+
     moje_karte = [skeniraj_novu_kartu() for i in range(8)]
 
     # proslijedi u belai
@@ -45,6 +50,8 @@ def main():
     # zvanja
     for i in range(3): print('n')
 
+    time.sleep(2)
+
     for i in range(32):
         print("pocetak", file=sys.stderr)
         inp = input()
@@ -53,8 +60,12 @@ def main():
             print("trazi", file=sys.stderr)
             print(ime_karte(skeniraj_novu_kartu()))
         elif inp == "auzmes":
+            print("auzmes", file=sys.stderr)
             # zovi auzmes
-            pass
+            for i in range(3):
+                hardware.beepaj(0.5)
+                time.sleep(0.3)
+            return
         else:
             print("bacam", file=sys.stderr)
             bacena_karta = moje_karte.index(karta_imena[inp])
