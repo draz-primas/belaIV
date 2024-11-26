@@ -1,5 +1,6 @@
 import hardware
 import camera
+import sys
 
 boje = ['T', 'K', 'H', 'P']
 znakovi = ['7', '8', '9', 'X', 'J', 'Q', 'K', 'A']
@@ -19,7 +20,7 @@ def skeniraj_novu_kartu():
             karta = int(kod.data)
             if karta not in vec_skenirane:
                 vec_skenirane.append(karta)
-                hardware.beepaj(0.2)
+                hardware.beepaj(0.1)
                 return karta
 
 def main():
@@ -45,14 +46,18 @@ def main():
     for i in range(3): print('n')
 
     for i in range(32):
+        print("pocetak", file=sys.stderr)
         inp = input()
+        print("dobiven input", file=sys.stderr)
         if len(inp) == 1: # trazi kartu
+            print("trazi", file=sys.stderr)
             print(ime_karte(skeniraj_novu_kartu()))
         elif inp == "auzmes":
             # zovi auzmes
             pass
         else:
-            bacena_karta = karta_imena[inp]
+            print("bacam", file=sys.stderr)
+            bacena_karta = moje_karte.index(karta_imena[inp])
             hardware.baci_kartu(bacena_karta)
 
     hardware.odpriredi_pinove()

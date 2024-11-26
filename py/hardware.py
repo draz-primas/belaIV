@@ -33,7 +33,7 @@ def baci_kartu(n):
 
 def beepaj(sekundi):
     GPIO.output(beeppin, GPIO.HIGH)
-    time.sleep(1)
+    time.sleep(sekundi)
     GPIO.output(beeppin, GPIO.LOW)
 
 def stisnuto():

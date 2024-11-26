@@ -5,6 +5,6 @@ cd belai
 make junkless release
 cd ..
 
-cat belaout | python py/main.py > belain &
 cat belain | ./belai/belai > belaout &
+cat belaout | python py/main.py > belain &
 
