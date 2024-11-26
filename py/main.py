@@ -53,3 +53,4 @@ def main():
             bacena_karta = karta_imena[inp]
             hardware.baci_kartu(bacena_karta)
 
+main()
