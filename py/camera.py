@@ -2,11 +2,14 @@ from picamzero import Camera
 from pyzbar import pyzbar
 import cv2
 
+camera = 0
+
 def read_qrcodes(frame):
-    qrcodes = pyzbar.decode(frame, symbols=[ZBarSymbol.QRCODE])
+    qrcodes = pyzbar.decode(frame, symbols=[pyzbar.ZBarSymbol.QRCODE])
     return qrcodes
 
 def start():
+    global camera
     camera = Camera()
     camera.still_size = (800, 600)
 

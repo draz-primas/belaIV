@@ -5,7 +5,7 @@ boje = ['T', 'K', 'H', 'P']
 znakovi = ['7', '8', '9', 'X', 'J', 'Q', 'K', 'A']
 
 def ime_karte(karta):
-    return boje[karta//4] + znakovi[karta%8]
+    return boje[karta//8] + znakovi[karta%8]
 
 karta_imena = {ime_karte(i) : i for i in range(32)}
 
@@ -23,6 +23,8 @@ def skeniraj_novu_kartu():
                 return karta
 
 def main():
+    camera.start()
+    hardware.priredi_pinove();
     # ucitaj karte
     moje_karte = [skeniraj_novu_kartu() for i in range(8)]
 
@@ -52,5 +54,7 @@ def main():
         else:
             bacena_karta = karta_imena[inp]
             hardware.baci_kartu(bacena_karta)
+
+    hardware.odpriredi_pinove()
 
 main()
