@@ -12,8 +12,6 @@ cd belaIV
 ```
 
 za pokretanje pokrenite `pokreni.sh`  
-za automatsko pokretanje mozda trebate promjenit zadnju liniju u `pokreni.sh`
-da bude cijeli path, a ne `./pokreni.sh`
 
 ### TODO
 
