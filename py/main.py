@@ -1,6 +1,5 @@
 import hardware
 import camera
-import sys
 import time
 
 boje = ['T', 'K', 'H', 'P']
@@ -53,21 +52,16 @@ def main():
     time.sleep(2)
 
     for i in range(32):
-        print("pocetak", file=sys.stderr)
         inp = input()
-        print("dobiven input", file=sys.stderr)
         if len(inp) == 1: # trazi kartu
-            print("trazi", file=sys.stderr)
             print(ime_karte(skeniraj_novu_kartu()))
         elif inp == "auzmes":
-            print("auzmes", file=sys.stderr)
             # zovi auzmes
             for i in range(3):
                 hardware.beepaj(0.5)
                 time.sleep(0.3)
             return
         else:
-            print("bacam", file=sys.stderr)
             bacena_karta = moje_karte.index(karta_imena[inp])
             hardware.baci_kartu(bacena_karta)
 
