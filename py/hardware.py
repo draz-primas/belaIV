@@ -4,6 +4,7 @@ import time
 beeppin = 8
 pinovi = [32, 31, 33, 36, 35, 37, 38, 40]
 pwm = []
+gumb_cekaj_pin = 12
 
 def priredi_pinove():
     GPIO.setmode(GPIO.BOARD)
@@ -14,6 +15,7 @@ def priredi_pinove():
         pwm[i].start(0)
 
     GPIO.setup(beeppin, GPIO.OUT)
+    GPIO.setup(gumb_cekaj_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def odpriredi_pinove():
     for i in range(8):
@@ -33,5 +35,15 @@ def beepaj(sekundi):
     GPIO.output(beeppin, GPIO.HIGH)
     time.sleep(sekundi)
     GPIO.output(beeppin, GPIO.LOW)
+
+def smije_bacit():
+    return GPIO.input(gumb_cekaj_pin)
+
+def cekaj_gumb():
+    beepaj(0.1)
+    time.sleep(0.1)
+    beepaj(0.5)
+    while not smije_bacit():
+        time.sleep(0.2)
 
 
