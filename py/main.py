@@ -1,7 +1,11 @@
+#import RPi.GPIO as GPIO
+#GPIO.cleanup()
 import hardware
 import camera
 import aduti
 import time
+
+#aduti.ugasi()
 
 boje = ['T', 'K', 'H', 'P']
 znakovi = ['7', '8', '9', 'X', 'J', 'Q', 'K', 'A']
@@ -28,28 +32,32 @@ def main():
     camera.start()
     hardware.priredi_pinove();
     # ucitaj karte
-    for i in range(8):
-        hardware.baci_kartu(i)
-    
-    aduti.zovi(aduti.gledaj())
+    #for i in range(8):
+        #hardware.baci_kartu(i)
     
     hardware.beepaj(0.5)
     time.sleep(0.1)
     hardware.beepaj(0.1)
     
-    moje_karte = [skeniraj_novu_kartu() for i in range(8)]
+    moje_karte = [skeniraj_novu_kartu() for i in range(6)]
 
     # proslijedi u belai
     for i in range(6):
         print(ime_karte(moje_karte[i]))
     print(0) # robot je uvijek prvi
-    print('y') # adut je izabran
+    print('n') # adut nije izabran
 
-    # @TODO nabavi aduta
-    adut = 0
-    print(boje[adut])
+    adut = 'T'
+    adutin = input()
+    if adutin == "dalje":
+        adut = boje[aduti.zovi(aduti.gledaj())]
+        print(adut)
+    else:
+        adut = boje.index(adutin)
+        aduti.zovi(adut)
 
     for i in range(6, 8):
+        moje_karte.append(skeniraj_novu_kartu())
         print(ime_karte(moje_karte[i]))
 
     # zvanja
@@ -74,5 +82,7 @@ def main():
             hardware.baci_kartu(bacena_karta)
 
     hardware.odpriredi_pinove()
+
+#GPIO.cleanup()
 
 main()

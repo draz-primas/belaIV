@@ -5,6 +5,8 @@ beeppin = 8
 pinovi = [32, 31, 33, 36, 35, 37, 38, 40]
 pwm = []
 gumb_cekaj_pin = 12
+#          B   G   Y   R
+lampice = [11, 13, 15, 16]
 
 def priredi_pinove():
     GPIO.setmode(GPIO.BOARD)
@@ -40,8 +42,9 @@ def smije_bacit():
     return GPIO.input(gumb_cekaj_pin)
 
 def cekaj_gumb():
-    beepaj(0.1)
-    time.sleep(0.1)
+    for i in range(4):
+        beepaj(0.1)
+        time.sleep(0.1)
     beepaj(0.5)
     while not smije_bacit():
         time.sleep(0.2)
