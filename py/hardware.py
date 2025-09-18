@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import lcddriver
 import time
 
 beeppin = 8
@@ -19,6 +20,8 @@ def priredi_pinove():
     GPIO.setup(beeppin, GPIO.OUT)
     GPIO.setup(gumb_cekaj_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+    lcd = lcddriver.lcd()
+
 def odpriredi_pinove():
     for i in range(8):
         pwm[i].stop()
@@ -32,6 +35,10 @@ def baci_kartu(n):
     time.sleep(2)
     pwm[n].ChangeDutyCycle(0)
 
+def napisi(tekst, red):
+    lcd.lcd_display_string(tekst, red)
+def clearlcd():
+    lcd.lcd_clear()
 
 def beepaj(sekundi):
     GPIO.output(beeppin, GPIO.HIGH)
