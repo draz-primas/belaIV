@@ -1,6 +1,6 @@
 #import RPi.GPIO as GPIO
 #GPIO.cleanup()
-import hw as hw
+import hardware as hw
 import camera
 import aduti
 import time
@@ -46,7 +46,7 @@ def main():
     moje_karte = []
     for i in range(6):
         moje_karte.append(skeniraj_novu_kartu())
-        hw.napisi(str(i), 3)
+        hw.napisi(str(i+1), 3)
 
     # proslijedi u belai
     for i in range(6):
@@ -63,11 +63,10 @@ def main():
         hw.napisi("dalje", 2)
         adut = boje[aduti.zovi(aduti.gledaj())]
         print(adut)
-        hw.napisi("adut: " + adut, 4)
     else:
-        adut = boje.index(adutin)
-        aduti.zovi(adut)
-        hw.napisi("adut: " + adutin, 4)
+        aduti.zovi(boje.index(adutin))
+        adut = adutin
+    hw.napisi("adut: " + adut, 4)
 
     hw.napisi("skeniraj talon", 1)
     for i in range(6, 8):
@@ -80,7 +79,9 @@ def main():
 
     time.sleep(2)
 
+    hw.clearlcd()
     hw.napisi("igra", 1)
+    hw.napisi("adut: " + adut, 4)
 
     for i in range(32):
         inp = input()
@@ -89,7 +90,8 @@ def main():
             print(ime_karte(skeniraj_novu_kartu()))
         elif inp == "auzmes":
             # zovi auzmes
-            hw.napisi("auzmes", 3)
+            hw.clearlcd()
+            hw.napisi("auzmes", 2)
             for i in range(3):
                 hw.beepaj(0.5)
                 time.sleep(0.3)

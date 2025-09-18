@@ -8,6 +8,7 @@ pwm = []
 gumb_cekaj_pin = 12
 #          B   G   Y   R
 lampice = [11, 13, 15, 16]
+lcd = lcddriver.lcd()
 
 def priredi_pinove():
     GPIO.setmode(GPIO.BOARD)
@@ -19,8 +20,6 @@ def priredi_pinove():
 
     GPIO.setup(beeppin, GPIO.OUT)
     GPIO.setup(gumb_cekaj_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
-    lcd = lcddriver.lcd()
 
 def odpriredi_pinove():
     for i in range(8):
