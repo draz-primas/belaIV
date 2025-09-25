@@ -86,6 +86,7 @@ def main():
     for i in range(32):
         inp = input()
         if len(inp) == 1: # trazi kartu
+            hw.napisi("skeniraj    ", 2)
             karta = ime_karte(skeniraj_novu_kartu())
             hw.napisi("skenirano " + karta, 2)
             print(karta)
@@ -98,7 +99,7 @@ def main():
                 time.sleep(0.3)
             return
         else:
-            hw.napisi("bacam kartu", 2)
+            hw.napisi("bacam kartu ", 2)
             bacena_karta = moje_karte.index(karta_imena[inp])
             if i%4 == 0:#ako je robot prvi na redu
                 hw.cekaj_gumb()
