@@ -13,7 +13,7 @@ znakovi = ['7', '8', '9', 'X', 'J', 'Q', 'K', 'A']
 def ime_karte(karta):
     return boje[karta//8] + znakovi[karta%8]
 
-karta_imena = {ime_karte(i) : i for i in range(32)}
+karta_imena = {ime_karte(i) : i for i in range(32)} # imena je genitiv
 
 
 vec_skenirane = []
@@ -86,8 +86,9 @@ def main():
     for i in range(32):
         inp = input()
         if len(inp) == 1: # trazi kartu
-            hw.napisi("cekam kartu", 2)
-            print(ime_karte(skeniraj_novu_kartu()))
+            karta = ime_karte(skeniraj_novu_kartu())
+            hw.napisi("skenirano " + karta, 2)
+            print(karta)
         elif inp == "auzmes":
             # zovi auzmes
             hw.clearlcd()
